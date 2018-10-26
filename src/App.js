@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Information from './components/Information';
 
 class App extends Component {
+  state = {
+    title: 'React crud Operaction',
+  };
+  changeTitle = () => {
+    this.setState((prevState, props) => {
+      return {
+        title: 'hello',
+      };
+    });
+  };
+  onMouseReaches = () => {
+    alert('mouse entered');
+  };
+  onChangevalue = event => {
+    console.log(event.target.value);
+  };
+
+  focusText = () => {
+    this.textInput.focus();
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.title}
+        <br />
+        <button onClick={this.changeTitle}>Change State</button>
+        <Information
+          title={2}
+          details="This is a very very dummy component"
+          changeText={this.changeTitle}
+          justAlert={this.onMouseReaches}
+        />
       </div>
     );
   }
